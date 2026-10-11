@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- El tema real lo define Compose; este solo cubre el arranque de la Activity. -->
+    <style name="Theme.SipinnaReportes" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">#1B3A5C</item>
+        <item name="android:navigationBarColor">#F4F6F8</item>
+        <item name="android:windowBackground">#F4F6F8</item>
+    </style>
+</resources>

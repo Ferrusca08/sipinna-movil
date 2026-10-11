@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Reporte SIPINNA</string>
+    <string name="titulo_principal">Reporte de Trabajo Infantil</string>
+    <string name="subtitulo_principal">Tu reporte puede cambiar la vida de una niña, niño o adolescente. Puedes reportar de forma anónima.</string>
+    <string name="boton_reportar">Hacer un Reporte</string>
+    <string name="boton_consultar">Consultar mi Reporte</string>
+    <string name="boton_info">¿Qué es trabajo infantil?</string>
+    <string name="emergencia_911">911</string>
+    <string name="linea_infancia">800 911 2511</string>
+    <string name="sin_conexion">Sin conexión. Verifica tu red.</string>
+</resources>

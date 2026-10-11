@@ -1,0 +1,25 @@
+# --- Secretos ---------------------------------------------------------------
+# local.properties lleva la llave de Google Maps y la URL del API.
+# La plantilla publicable es local.properties.example.
+local.properties
+*.jks
+*.keystore
+keystore.properties
+
+# --- Artefactos de build ----------------------------------------------------
+build/
+app/build/
+.gradle/
+.kotlin/
+captures/
+*.apk
+*.aab
+
+# --- IDE --------------------------------------------------------------------
+.idea/
+*.iml
+.cxx/
+
+# --- Sistema ----------------------------------------------------------------
+.DS_Store
+*.log
