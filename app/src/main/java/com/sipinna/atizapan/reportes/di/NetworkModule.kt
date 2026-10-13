@@ -1,8 +1,8 @@
 package com.sipinna.atizapan.reportes.di
 
 import com.sipinna.atizapan.reportes.BuildConfig
-import com.sipinna.atizapan.reportes.data.remote.ApiService
-import com.sipinna.atizapan.reportes.data.remote.interceptors.ErrorInterceptor
+import com.sipinna.atizapan.reportes.model.remote.ApiService
+import com.sipinna.atizapan.reportes.model.remote.interceptors.ErrorInterceptor
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module

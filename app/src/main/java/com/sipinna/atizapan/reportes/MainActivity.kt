@@ -9,8 +9,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.sipinna.atizapan.reportes.presentation.navigation.AppNavGraph
-import com.sipinna.atizapan.reportes.presentation.theme.SipinnaTheme
+import com.sipinna.atizapan.reportes.view.navigation.AppNavGraph
+import com.sipinna.atizapan.reportes.view.theme.SipinnaTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

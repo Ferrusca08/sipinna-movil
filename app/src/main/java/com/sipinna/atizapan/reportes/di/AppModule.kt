@@ -1,11 +1,13 @@
 package com.sipinna.atizapan.reportes.di
 
-import com.sipinna.atizapan.reportes.data.repository.EvidenciaRepositoryImpl
-import com.sipinna.atizapan.reportes.data.repository.ReporteRepositoryImpl
-import com.sipinna.atizapan.reportes.data.repository.UbicacionRepositoryImpl
-import com.sipinna.atizapan.reportes.domain.repository.EvidenciaRepository
-import com.sipinna.atizapan.reportes.domain.repository.ReporteRepository
-import com.sipinna.atizapan.reportes.domain.repository.UbicacionRepository
+import com.sipinna.atizapan.reportes.model.repository.EvidenciaRepositoryImpl
+import com.sipinna.atizapan.reportes.model.repository.ReporteRepositoryImpl
+import com.sipinna.atizapan.reportes.model.local.PreferenciasDataStore
+import com.sipinna.atizapan.reportes.model.repository.UbicacionRepositoryImpl
+import com.sipinna.atizapan.reportes.model.repository.EvidenciaRepository
+import com.sipinna.atizapan.reportes.model.repository.PreferenciasRepository
+import com.sipinna.atizapan.reportes.model.repository.ReporteRepository
+import com.sipinna.atizapan.reportes.model.repository.UbicacionRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -30,6 +32,10 @@ abstract class AppModule {
     @Binds
     @Singleton
     abstract fun enlazarEvidenciaRepository(impl: EvidenciaRepositoryImpl): EvidenciaRepository
+
+    @Binds
+    @Singleton
+    abstract fun enlazarPreferenciasRepository(impl: PreferenciasDataStore): PreferenciasRepository
 
     companion object {
         /**
