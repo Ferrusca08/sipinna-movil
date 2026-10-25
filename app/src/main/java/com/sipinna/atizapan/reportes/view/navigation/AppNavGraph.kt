@@ -11,7 +11,10 @@ import com.sipinna.atizapan.reportes.view.ConsultarEstatusScreen
 import com.sipinna.atizapan.reportes.view.EvidenciaScreen
 import com.sipinna.atizapan.reportes.view.HomeScreen
 import com.sipinna.atizapan.reportes.view.InfoScreen
+import com.sipinna.atizapan.reportes.view.LoginScreen
+import com.sipinna.atizapan.reportes.view.MisReportesScreen
 import com.sipinna.atizapan.reportes.view.NuevoReporteScreen
+import com.sipinna.atizapan.reportes.view.RegistroScreen
 
 /** Rutas de la app. El token viaja como argumento para no guardar estado global. */
 object Rutas {
@@ -21,6 +24,9 @@ object Rutas {
     const val EVIDENCIA = "evidencia/{reporteId}"
     const val CONSULTA = "consulta?token={token}"
     const val INFO = "info"
+    const val LOGIN = "login"
+    const val REGISTRO = "registro"
+    const val MIS_REPORTES = "mis_reportes"
 
     fun confirmacion(reporteId: String) = "confirmacion/$reporteId"
     fun evidencia(reporteId: String) = "evidencia/$reporteId"
@@ -36,6 +42,49 @@ fun AppNavGraph(navController: NavHostController) {
                 alReportar = { navController.navigate(Rutas.NUEVO_REPORTE) },
                 alConsultar = { navController.navigate(Rutas.consulta()) },
                 alVerInfo = { navController.navigate(Rutas.INFO) },
+                alIrAMisReportes = { navController.navigate(Rutas.MIS_REPORTES) },
+                alIrALogin = { navController.navigate(Rutas.LOGIN) },
+            )
+        }
+
+        composable(Rutas.LOGIN) {
+            LoginScreen(
+                alRegresar = { navController.popBackStack() },
+                alIrARegistro = {
+                    navController.navigate(Rutas.REGISTRO) {
+                        popUpTo(Rutas.LOGIN) { inclusive = true }
+                    }
+                },
+                alIniciarSesionExitoso = {
+                    navController.navigate(Rutas.MIS_REPORTES) {
+                        popUpTo(Rutas.HOME)
+                    }
+                },
+            )
+        }
+
+        composable(Rutas.REGISTRO) {
+            RegistroScreen(
+                alRegresar = { navController.popBackStack() },
+                alIrALogin = {
+                    navController.navigate(Rutas.LOGIN) {
+                        popUpTo(Rutas.REGISTRO) { inclusive = true }
+                    }
+                },
+                alRegistroExitoso = {
+                    navController.navigate(Rutas.MIS_REPORTES) {
+                        popUpTo(Rutas.HOME)
+                    }
+                },
+            )
+        }
+
+        composable(Rutas.MIS_REPORTES) {
+            MisReportesScreen(
+                alRegresar = { navController.popBackStack() },
+                alIrALogin = { navController.navigate(Rutas.LOGIN) },
+                alIrARegistro = { navController.navigate(Rutas.REGISTRO) },
+                alCrearReporte = { navController.navigate(Rutas.NUEVO_REPORTE) },
             )
         }
 

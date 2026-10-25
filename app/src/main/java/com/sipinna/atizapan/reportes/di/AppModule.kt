@@ -37,6 +37,10 @@ abstract class AppModule {
     @Singleton
     abstract fun enlazarPreferenciasRepository(impl: PreferenciasDataStore): PreferenciasRepository
 
+    @Binds
+    @Singleton
+    abstract fun enlazarAuthRepository(impl: com.sipinna.atizapan.reportes.model.repository.AuthRepositoryImpl): com.sipinna.atizapan.reportes.model.repository.AuthRepository
+
     companion object {
         /**
          * Dispatcher de E/S inyectado en lugar de usar Dispatchers.IO directo:

@@ -4,6 +4,7 @@ import com.sipinna.atizapan.reportes.model.repository.PreferenciasRepository
 import com.sipinna.atizapan.reportes.model.Reporte
 import com.sipinna.atizapan.reportes.model.ReporteCreado
 import com.sipinna.atizapan.reportes.model.repository.ReporteRepository
+import kotlinx.coroutines.flow.firstOrNull
 import javax.inject.Inject
 
 /**
@@ -19,7 +20,16 @@ class CrearReporteUseCase @Inject constructor(
         val validacion = validar(reporte)
         if (validacion != null) return Result.failure(IllegalArgumentException(validacion))
 
+        val usuario = preferencias.usuarioActual.firstOrNull()
         return repositorio.crear(reporte).onSuccess { creado ->
+            if (usuario != null) {
+                preferencias.guardarTokenUsuario(
+                    usuarioId = usuario.id,
+                    reporteId = creado.reporteId,
+                    fecha = creado.fechaCreacion,
+                    categoria = reporte.categoriaTrabajo.etiqueta,
+                )
+            }
             preferencias.guardarToken(
                 reporteId = creado.reporteId,
                 fecha = creado.fechaCreacion,

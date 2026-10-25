@@ -11,6 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -158,6 +159,7 @@ fun InfoScreen(alRegresar: () -> Unit) {
             Spacer(Modifier.height(16.dp))
 
             Bloque(titulo = "Contacto") {
+                val contexto = androidx.compose.ui.platform.LocalContext.current
                 Text(
                     text = "SIPINNA Atizapán de Zaragoza\n" +
                         "Sistema de Protección Integral de Niñas, Niños y Adolescentes\n\n" +
@@ -167,6 +169,33 @@ fun InfoScreen(alRegresar: () -> Unit) {
                     style = MaterialTheme.typography.bodyMedium,
                     color = TextoSecundario,
                 )
+
+                Spacer(Modifier.height(14.dp))
+
+                androidx.compose.material3.Button(
+                    onClick = {
+                        runCatching {
+                            val intent = android.content.Intent(
+                                android.content.Intent.ACTION_VIEW,
+                                android.net.Uri.parse("https://www.instagram.com/sipinnaatizapandezaragoza/"),
+                            ).apply { flags = android.content.Intent.FLAG_ACTIVITY_NEW_TASK }
+                            contexto.startActivity(intent)
+                        }
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(10.dp),
+                    colors = androidx.compose.material3.ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFE1306C),
+                        contentColor = Color.White,
+                    ),
+                ) {
+                    Icon(
+                        Icons.Filled.Share,
+                        contentDescription = null,
+                        modifier = Modifier.padding(end = 8.dp),
+                    )
+                    Text("Instagram @sipinnaatizapandezaragoza")
+                }
             }
 
             Spacer(Modifier.height(32.dp))

@@ -47,6 +47,7 @@ class NuevoReporteViewModel @Inject constructor(
 
     init {
         recuperarBorrador()
+        precargarDatosUsuario()
     }
 
     // --- Paso 1 -------------------------------------------------------------
@@ -276,6 +277,20 @@ class NuevoReporteViewModel @Inject constructor(
                             ?.let(LugarEspecifico::desdeValor),
                     )
                 }
+            }
+        }
+    }
+
+    private fun precargarDatosUsuario() {
+        viewModelScope.launch {
+            val usuario = preferencias.usuarioActual.first() ?: return@launch
+            _estado.update { actual ->
+                val c = actual.contacto
+                val nuevoContacto = c.copy(
+                    nombre = if (c.nombre.isBlank()) usuario.nombre else c.nombre,
+                    email = if (c.email.isBlank()) usuario.email else c.email,
+                )
+                actual.copy(contacto = nuevoContacto)
             }
         }
     }

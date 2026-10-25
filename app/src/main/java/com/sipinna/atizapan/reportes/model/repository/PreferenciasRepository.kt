@@ -1,14 +1,12 @@
 package com.sipinna.atizapan.reportes.model.repository
 
 import com.sipinna.atizapan.reportes.model.TokenSeguimiento
+import com.sipinna.atizapan.reportes.model.Usuario
 import kotlinx.coroutines.flow.Flow
 
 /**
- * Memoria local del teléfono: los folios de los reportes enviados y el borrador
- * del formulario en curso.
- *
- * El dominio declara qué necesita; que hoy se resuelva con DataStore y mañana
- * con otra cosa no debería alcanzar a los ViewModels.
+ * Memoria local del teléfono: los folios de los reportes enviados,
+ * la sesión de usuario y el borrador del formulario en curso.
  */
 interface PreferenciasRepository {
 
@@ -25,4 +23,28 @@ interface PreferenciasRepository {
     suspend fun guardarBorrador(json: String)
 
     suspend fun limpiarBorrador()
+
+    // --- Sesión de usuario --------------------------------------------------
+    val usuarioActual: Flow<Usuario?>
+
+    suspend fun guardarUsuario(usuario: Usuario)
+
+    suspend fun cerrarSesion()
+
+    suspend fun obtenerTokenAuth(): String?
+
+    // --- Reportes por cuenta de usuario -------------------------------------
+    fun tokensDeUsuario(usuarioId: String): Flow<List<TokenSeguimiento>>
+
+    suspend fun guardarTokenUsuario(
+        usuarioId: String,
+        reporteId: String,
+        fecha: String,
+        categoria: String,
+    )
+
+    // --- Registro y autenticación -------------------------------------------
+    suspend fun registrarCuenta(nombre: String, email: String, hash: String): Result<Usuario>
+
+    suspend fun autenticarCuenta(email: String, hash: String): Result<Usuario>
 }

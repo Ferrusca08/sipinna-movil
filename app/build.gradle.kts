@@ -37,7 +37,7 @@ android {
         buildConfigField(
             "String",
             "API_BASE_URL",
-            "\"${propiedadLocal("API_BASE_URL", "https://localhost/")}\"",
+            "\"${propiedadLocal("API_BASE_URL", "https://bq00n9sqch.execute-api.us-east-1.amazonaws.com/")}\"",
         )
     }
 
